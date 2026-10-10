@@ -757,7 +757,6 @@ body.shaking { animation: screenShake .55s; }
 }
 .arcade-note b { color: #f5a623; }
 
-/* External emulator sites list */
 .ext-emu-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -1375,7 +1374,7 @@ body.shaking { animation: screenShake .55s; }
 #dialup-modal .dialup-fill { height: 100%; width: 0%; background: repeating-linear-gradient(90deg, #00b000 0, #00b000 10px, #a0d0a0 10px, #a0d0a0 12px); transition: width .3s; }
 #dialup-modal .dialup-note { font-size: 10px; color: #666; margin-top: 4px; font-style: italic; }
 
-/* MODAL OVERLAY for password prompt */
+/* PASSWORD PROMPT */
 #pwd-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.5); display: none; align-items: center; justify-content: center; z-index: 2100; }
 #pwd-overlay.open { display: flex; }
 .pwd-dialog {
@@ -1417,14 +1416,14 @@ body.shaking { animation: screenShake .55s; }
 }
 .pwd-dialog.shake { animation: pwdShake .35s; }
 
-/* BOOT */
+/* BOOT — FASTER */
 #boot {
   position: fixed; inset: 0; background: #000;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  z-index: 2000; transition: opacity .5s;
+  z-index: 2000; transition: opacity .3s;
 }
 #boot.done { opacity: 0; pointer-events: none; }
-.boot-logo { display: flex; align-items: center; gap: 14px; margin-bottom: 60px; animation: bootPulse 2s infinite; }
+.boot-logo { display: flex; align-items: center; gap: 14px; margin-bottom: 60px; animation: bootPulse 1.2s infinite; }
 @keyframes bootPulse { 0%,100% { opacity: .9; } 50% { opacity: 1; } }
 .boot-flag { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; width: 46px; height: 46px; }
 .boot-flag div { border-radius: 2px; }
@@ -1435,7 +1434,7 @@ body.shaking { animation: screenShake .55s; }
 .boot-bar { width: 200px; height: 14px; border: 1px solid #5a5a5a; border-radius: 3px; padding: 2px; background: #111; overflow: hidden; position: relative; }
 .boot-bar::after { content: ""; position: absolute; top: 2px; left: 2px; height: calc(100% - 4px); width: 40px;
   border-radius: 2px; background: repeating-linear-gradient(90deg, #2f6eff 0, #2f6eff 10px, #2f6eff 10px, transparent 10px, transparent 14px);
-  animation: bootSlide 1.6s linear infinite; }
+  animation: bootSlide 0.7s linear infinite; }
 @keyframes bootSlide { 0% { transform: translateX(-46px); } 100% { transform: translateX(200px); } }
 .boot-msg { color: #b8b8b8; font-family: "Trebuchet MS", sans-serif; font-size: 11px; margin-top: 22px; letter-spacing: .5px; }
 
@@ -1813,7 +1812,6 @@ body.shaking { animation: screenShake .55s; }
     <circle cx="11" cy="12" r="2" fill="#ffd45e"/>
   </symbol>
 
-  <!-- NEW: Arcade cabinet -->
   <symbol id="ico-arcade" viewBox="0 0 32 32">
     <rect x="5" y="3" width="22" height="27" rx="2" fill="url(#gArcade)" stroke="#4a0808" stroke-width=".8"/>
     <rect x="7" y="5.5" width="18" height="12" rx="1" fill="#000" stroke="#2a2a2a" stroke-width=".6"/>
@@ -1827,7 +1825,6 @@ body.shaking { animation: screenShake .55s; }
     <circle cx="20.5" cy="23.5" r="1.5" fill="#00ff88"/>
   </symbol>
 
-  <!-- Cartridge -->
   <symbol id="ico-cart" viewBox="0 0 32 32">
     <rect x="5" y="4" width="22" height="24" rx="2" fill="url(#gCart)" stroke="#111" stroke-width=".7"/>
     <rect x="7" y="6" width="18" height="14" rx="1" fill="#ffcc00" stroke="#a08000" stroke-width=".5"/>
@@ -1910,7 +1907,6 @@ body.shaking { animation: screenShake .55s; }
     <path d="M26 36 Q32 42 38 36" stroke="#000" stroke-width="1.8" fill="none" stroke-linecap="round"/>
   </symbol>
 
-  <!-- Speech bubble for properties -->
   <symbol id="ico-speech" viewBox="0 0 32 32">
     <path d="M4 6h24v16H14l-6 6v-6H4z" fill="#fff" stroke="#4a86d8" stroke-width="1.4" stroke-linejoin="round"/>
     <g stroke="#4a86d8" stroke-width="1.4" fill="none" stroke-linecap="round">
@@ -2207,9 +2203,7 @@ body.shaking { animation: screenShake .55s; }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) {
     return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
 
-  /* ==========================================================
-     SOUND
-  ========================================================== */
+  /* SOUND */
   const Sound = (function () {
     let ctx = null, masterVol = 0.66, muted = false;
     function ensureCtx() {
@@ -2272,9 +2266,7 @@ body.shaking { animation: screenShake .55s; }
   document.addEventListener("pointerdown", unlockAudio, { once: true });
   document.addEventListener("keydown", unlockAudio, { once: true });
 
-  /* ==========================================================
-     USERS
-  ========================================================== */
+  /* USERS */
   const USERS = [
     { id: "blade156", name: "blade156", avatar: "ico-user-blade", avatarBg: "#c23a2e", wallpaper: "bliss", tagline: "no thoughts, only vibes", greeting: "yo. blade156 logged in. try the arcade." },
     { id: "zoid", name: "zoid", avatar: "ico-user-zoid", avatarBg: "#4a9d3f", wallpaper: "bliss", tagline: "beep boop", greeting: "zoid has entered the chat." },
@@ -2286,9 +2278,7 @@ body.shaking { animation: screenShake .55s; }
   let currentUser = USERS[4];
   function getUser(id) { for (let i = 0; i < USERS.length; i++) if (USERS[i].id === id) return USERS[i]; return USERS[4]; }
 
-  /* ==========================================================
-     ACHIEVEMENTS
-  ========================================================== */
+  /* ACHIEVEMENTS */
   const unlockedAchievements = {};
   const ACHIEVEMENTS = {
     first_boot: { ico: "🖥️", title: "Hello, World", desc: "Logged in for the first time" },
@@ -2330,9 +2320,7 @@ body.shaking { animation: screenShake .55s; }
     setTimeout(function () { el.classList.add("fadeout"); setTimeout(function () { el.remove(); }, 500); }, 4500);
   }
 
-  /* ==========================================================
-     DIALOGS
-  ========================================================== */
+  /* DIALOGS */
   const dlgOverlay = document.getElementById("dialog-overlay");
   const dlgRoot = document.getElementById("dlg-root");
   const dlgIcon = document.getElementById("dlg-icon");
@@ -2396,9 +2384,7 @@ body.shaking { animation: screenShake .55s; }
   });
   dlgOverlay.addEventListener("click", function (e) { if (e.target === dlgOverlay) closeDialog(); });
 
-  /* ==========================================================
-     PASSWORD PROMPT
-  ========================================================== */
+  /* PASSWORD PROMPT */
   const pwdOverlay = document.getElementById("pwd-overlay");
   const pwdDialog = document.getElementById("pwd-dialog");
   const pwdTitleIcon = document.getElementById("pwd-title-icon");
@@ -2448,9 +2434,7 @@ body.shaking { animation: screenShake .55s; }
   pwdOverlay.querySelectorAll('[data-role="cancel"]').forEach(function (b) { b.addEventListener("click", function () { Sound.click(); closePasswordDialog(); }); });
   pwdOverlay.addEventListener("click", function (e) { if (e.target === pwdOverlay) closePasswordDialog(); });
 
-  /* ==========================================================
-     BALLOONS
-  ========================================================== */
+  /* BALLOONS */
   let balloonEl = null, balloonTimer = null;
   function showBalloon(title, body, iconName) {
     if (balloonEl) { balloonEl.remove(); clearTimeout(balloonTimer); }
@@ -2480,9 +2464,7 @@ body.shaking { animation: screenShake .55s; }
     setTimeout(function () { document.body.classList.remove("shaking"); }, 600);
   }
 
-  /* ==========================================================
-     CLIPPY
-  ========================================================== */
+  /* CLIPPY */
   const clippyEl = document.getElementById("clippy");
   const clippyTitleText = document.getElementById("clippy-title-text");
   const clippyBody = document.getElementById("clippy-body");
@@ -2539,7 +2521,6 @@ body.shaking { animation: screenShake .55s; }
   ];
 
   function showClippy(forceIndex) {
-    // Rare "clippy is dead" variant
     if (!clippyDeadShown && Math.random() < 0.08) {
       clippyDeadShown = true;
       clippyEl.classList.add("dead");
@@ -2578,9 +2559,7 @@ body.shaking { animation: screenShake .55s; }
   }
   document.querySelector(".clippy-close").addEventListener("click", clippyDismiss);
 
-  /* ==========================================================
-     BONZI BUDDY
-  ========================================================== */
+  /* BONZI */
   const bonziEl = document.getElementById("bonzi");
   const bonziBubble = document.getElementById("bonzi-bubble");
 
@@ -2597,14 +2576,10 @@ body.shaking { animation: screenShake .55s; }
     bonziBubble.textContent = BONZI_LINES[Math.floor(Math.random() * BONZI_LINES.length)];
     bonziEl.classList.add("show");
     unlockAchievement("bonzi");
-    setTimeout(function () {
-      bonziEl.classList.remove("show");
-    }, 7000);
+    setTimeout(function () { bonziEl.classList.remove("show"); }, 7000);
   }
 
-  /* ==========================================================
-     CONTEXT MENU
-  ========================================================== */
+  /* CONTEXT MENU */
   let ctxMenu = null;
   function hideContextMenu() {
     if (ctxMenu && ctxMenu.parentNode) ctxMenu.parentNode.removeChild(ctxMenu);
@@ -2635,23 +2610,19 @@ body.shaking { animation: screenShake .55s; }
   }
   document.addEventListener("click", hideContextMenu);
 
-  /* ==========================================================
-     BSOD
-  ========================================================== */
+  /* BSOD */
   const bsod = document.getElementById("bsod");
   function showBSOD() { Sound.error(); screenShake(); bsod.classList.add("open"); setTimeout(function () { unlockAchievement("bsod_survivor"); }, 800); }
   function hideBSOD() { bsod.classList.remove("open"); }
   bsod.addEventListener("click", hideBSOD);
   document.addEventListener("keydown", function (e) { if (bsod.classList.contains("open")) { e.preventDefault(); hideBSOD(); } });
 
-  /* ==========================================================
-     WINDOW MANAGER
-  ========================================================== */
+  /* WINDOW MANAGER */
   const layer = document.getElementById("window-layer");
   const taskBtnBox = document.getElementById("task-buttons");
   let zTop = 100, focusedApp = null;
   const openWindows = new Map();
-  const recentApps = []; // QoL: recent programs
+  const recentApps = [];
 
   function pushRecent(appId) {
     const i = recentApps.indexOf(appId);
@@ -2679,12 +2650,9 @@ body.shaking { animation: screenShake .55s; }
   }
   function closeAllWindows() { Array.from(openWindows.keys()).forEach(closeWindow); }
 
-  // QoL: group taskbar buttons when 3+ of same app
   function refreshTaskbarGroups() {
-    // Simple count — the actual grouping happens at button creation
-    // For simplicity, we just leave individual buttons but show count badges
     const counts = {};
-    openWindows.forEach(function (rec, id) {
+    openWindows.forEach(function (rec) {
       const appId = rec.appId;
       counts[appId] = (counts[appId] || 0) + 1;
     });
@@ -2768,16 +2736,14 @@ body.shaking { animation: screenShake .55s; }
     });
     el.addEventListener("pointerdown", function () { focusWindow(id); });
 
-    // Drag + snap on release
     const titlebar = el.querySelector(".titlebar");
-    let dragging = false, offX = 0, offY = 0, startRect = null;
+    let dragging = false, offX = 0, offY = 0;
     titlebar.addEventListener("pointerdown", function (e) {
       if (e.target.closest(".tb-btn")) return;
       if (el.classList.contains("maximized")) return;
       if (window.innerWidth <= 720) return;
       const r = el.getBoundingClientRect();
       offX = e.clientX - r.left; offY = e.clientY - r.top;
-      startRect = { left: r.left, top: r.top, width: r.width, height: r.height };
       dragging = true;
       titlebar.setPointerCapture(e.pointerId);
       focusWindow(id);
@@ -2793,7 +2759,6 @@ body.shaking { animation: screenShake .55s; }
       if (!dragging) return;
       dragging = false;
       try { titlebar.releasePointerCapture(e.pointerId); } catch (_) {}
-      // Snap on release
       const threshold = 16;
       const halfW = window.innerWidth / 2;
       const fullH = window.innerHeight - 30;
@@ -2826,9 +2791,7 @@ body.shaking { animation: screenShake .55s; }
     return rec;
   }
 
-  /* ==========================================================
-     MENU BAR
-  ========================================================== */
+  /* MENU BAR */
   let openDropdown = null;
   function closeDropdowns() {
     if (openDropdown && openDropdown.parentNode) openDropdown.parentNode.removeChild(openDropdown);
@@ -2866,9 +2829,7 @@ body.shaking { animation: screenShake .55s; }
     });
   }
 
-  /* ==========================================================
-     APP: NOTEPAD (with .LOG and bush hid the facts)
-  ========================================================== */
+  /* NOTEPAD */
   function appNotepad(body, api) {
     body.classList.add("app-notepad");
     const menubar = document.createElement("div");
@@ -2896,16 +2857,13 @@ body.shaking { animation: screenShake .55s; }
     area.addEventListener("click", updateStatus);
     updateStatus();
 
-    // .LOG behavior: check on load
     if (area.value.toUpperCase().startsWith(".LOG")) {
       const now = new Date();
-      const stamp = now.toLocaleDateString() + " " + now.toLocaleTimeString();
-      area.value += "\n" + stamp + "\n";
+      area.value += "\n" + now.toLocaleDateString() + " " + now.toLocaleTimeString() + "\n";
       updateStatus();
       unlockAchievement("log_file");
     }
 
-    // bush hid the facts bug
     function checkBushBug() {
       const t = area.value.trim().toLowerCase();
       if (t === "bush hid the facts") {
@@ -2921,7 +2879,6 @@ body.shaking { animation: screenShake .55s; }
         { label: "New", action: function () { area.value = ""; updateStatus(); } },
         { label: "Save", action: function () {
             checkBushBug();
-            // If .LOG present, add timestamp
             if (area.value.toUpperCase().startsWith(".LOG")) {
               const now = new Date();
               area.value += "\n" + now.toLocaleDateString() + " " + now.toLocaleTimeString() + "\n";
@@ -2957,9 +2914,7 @@ body.shaking { animation: screenShake .55s; }
     ]);
   }
 
-  /* ==========================================================
-     APP: MINESWEEPER
-  ========================================================== */
+  /* MINESWEEPER */
   function appMinesweeper(body, api) {
     body.classList.add("app-minesweeper");
     body.innerHTML = '<div class="ms-top">' +
@@ -3066,9 +3021,7 @@ body.shaking { animation: screenShake .55s; }
     reset();
   }
 
-  /* ==========================================================
-     APP: SNAKE
-  ========================================================== */
+  /* SNAKE */
   function appSnake(body, api) {
     body.classList.add("app-snake");
     body.innerHTML =
@@ -3156,9 +3109,7 @@ body.shaking { animation: screenShake .55s; }
     reset(); start();
   }
 
-  /* ==========================================================
-     APP: PAINT
-  ========================================================== */
+  /* PAINT */
   function appPaint(body, api) {
     body.classList.add("app-paint");
     body.innerHTML =
@@ -3217,9 +3168,7 @@ body.shaking { animation: screenShake .55s; }
     });
   }
 
-  /* ==========================================================
-     APP: EXPLORER
-  ========================================================== */
+  /* EXPLORER */
   function appExplorer(body, api) {
     body.classList.add("app-explorer");
     const items = [
@@ -3255,7 +3204,6 @@ body.shaking { animation: screenShake .55s; }
       });
       list.appendChild(el);
     });
-    // Reserved name gag: try to make a "con" folder
     const newBtn = document.createElement("button");
     newBtn.className = "xp-btn";
     newBtn.textContent = "New Folder";
@@ -3290,9 +3238,7 @@ body.shaking { animation: screenShake .55s; }
     }
   }
 
-  /* ==========================================================
-     IE APP (same as before, condensed)
-  ========================================================== */
+  /* IE */
   function appIE(body, api) {
     body.classList.add("app-ie");
     const ROBLOX_GAMES = [
@@ -3513,9 +3459,7 @@ body.shaking { animation: screenShake .55s; }
     render();
   }
 
-  /* ==========================================================
-     APP: RETRO ARCADE (EmulatorJS + ROM loader + external links)
-  ========================================================== */
+  /* RETRO ARCADE */
   function appArcade(body, api) {
     body.classList.add("app-arcade");
     unlockAchievement("arcade");
@@ -3563,7 +3507,6 @@ body.shaking { animation: screenShake .55s; }
     function renderSystems() {
       bodyEl.innerHTML = '';
       if (selectedSystem) {
-        // Player view
         const player = document.createElement("div");
         player.className = "arcade-player";
         player.id = "arcade-emulator-target";
@@ -3583,7 +3526,6 @@ body.shaking { animation: screenShake .55s; }
         ctrl.querySelector('[data-role="back-systems"]').addEventListener("click", function () { selectedSystem = null; renderSystems(); });
         ctrl.querySelector('[data-role="open-ext"]').addEventListener("click", function () { currentTab = "sites"; renderTab(); });
       } else {
-        // System grid
         const note = document.createElement("div");
         note.className = "arcade-note";
         note.innerHTML = '<b>⚠️ Note:</b> This arcade runs emulators directly in your browser using EmulatorJS (WebAssembly RetroArch). Click a system, then load a ROM file from your computer. ' +
@@ -3682,7 +3624,6 @@ body.shaking { animation: screenShake .55s; }
       });
     });
 
-    // ROM picker + EmulatorJS bootstrap
     function pickRom(sys) {
       const input = document.createElement("input");
       input.type = "file";
@@ -3695,7 +3636,6 @@ body.shaking { animation: screenShake .55s; }
     }
 
     function bootEmulator(sys, file) {
-      // Make sure we're on the systems tab so the player target exists
       currentTab = "systems";
       selectedSystem = sys;
       renderTab();
@@ -3704,13 +3644,11 @@ body.shaking { animation: screenShake .55s; }
       const target = document.getElementById(targetId);
       if (!target) return;
 
-      // Replace the empty div with a fresh container for EmulatorJS
       target.innerHTML = '<div id="ejs-' + Date.now() + '" style="width:100%;height:100%;min-height:340px;"></div>';
       const gameHost = target.firstChild;
 
       const blobUrl = URL.createObjectURL(file);
 
-      // Set global config for EmulatorJS
       window.EJS_player = "#" + gameHost.id;
       window.EJS_core = sys.core;
       window.EJS_gameUrl = blobUrl;
@@ -3720,11 +3658,9 @@ body.shaking { animation: screenShake .55s; }
       window.EJS_color = "#f5a623";
       window.EJS_backgroundColor = "#000";
 
-      // Remove any previous loader so we can re-init
       const oldLoader = document.getElementById("ejs-loader");
       if (oldLoader) oldLoader.remove();
 
-      // Load EmulatorJS loader script from CDN
       const s = document.createElement("script");
       s.id = "ejs-loader";
       s.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
@@ -3738,16 +3674,13 @@ body.shaking { animation: screenShake .55s; }
 
       unlockAchievement("rom_loaded");
 
-      // Clean up blob URL when window closes
       api.onClose(function () { try { URL.revokeObjectURL(blobUrl); } catch (e) {} });
     }
 
     renderTab();
   }
 
-  /* ==========================================================
-     APP: TASK MANAGER
-  ========================================================== */
+  /* TASK MANAGER */
   function appTaskMgr(body, api) {
     body.classList.add("app-taskmgr");
     unlockAchievement("taskmgr");
@@ -3881,9 +3814,7 @@ body.shaking { animation: screenShake .55s; }
     render();
   }
 
-  /* ==========================================================
-     APP: STICKY NOTE
-  ========================================================== */
+  /* STICKY NOTE */
   function createStickyNote(x, y, initialText) {
     const note = document.createElement("div");
     note.className = "sticky-note";
@@ -3948,9 +3879,7 @@ body.shaking { animation: screenShake .55s; }
     return note;
   }
 
-  /* ==========================================================
-     APP: SPEECH PROPERTIES (with crotch → crow's nest gag)
-  ========================================================== */
+  /* SPEECH PROPERTIES */
   function appSpeech(body, api) {
     body.classList.add("app-speech");
     body.innerHTML =
@@ -3982,10 +3911,8 @@ body.shaking { animation: screenShake .55s; }
                 "It will say \"crow's nest\" instead.\n\n" +
                 "This is a real easter egg from Windows XP, added by the developer who voiced Microsoft Sam." });
       } else {
-        // Just fire achievement on first use
         unlockAchievement("speech");
       }
-      // Use SpeechSynthesis API if available
       if (window.speechSynthesis) {
         const u = new SpeechSynthesisUtterance(spoken);
         u.rate = 0.85; u.pitch = 0.9;
@@ -3998,9 +3925,7 @@ body.shaking { animation: screenShake .55s; }
     });
   }
 
-  /* ==========================================================
-     APP: VIRUS SCAN
-  ========================================================== */
+  /* VIRUS SCAN */
   function appVirusScan(body, api) {
     body.innerHTML =
       '<div style="padding:12px;background:#fff;flex:1;display:flex;flex-direction:column;">' +
@@ -4092,9 +4017,7 @@ body.shaking { animation: screenShake .55s; }
     logLine("> RetroAntivirus 2003 ready. Click \"Scan Now\".", "#006600");
   }
 
-  /* ==========================================================
-     APP: DISK DEFRAGMENTER
-  ========================================================== */
+  /* DEFRAG */
   function appDefrag(body, api) {
     body.innerHTML =
       '<div style="padding:10px;background:#fff;flex:1;display:flex;flex-direction:column;font-family:Arial;font-size:11px;">' +
@@ -4166,9 +4089,7 @@ body.shaking { animation: screenShake .55s; }
     initGrid();
   }
 
-  /* ==========================================================
-     APP: SOLITAIRE (condensed same as before)
-  ========================================================== */
+  /* SOLITAIRE */
   function appSolitaire(body, api) {
     body.classList.add("app-solitaire");
     const SUITS = ["♥","♦","♣","♠"], RANKS = ["A","2","3","4","5","6","7","8","9","10","J","Q","K"];
@@ -4322,10 +4243,8 @@ body.shaking { animation: screenShake .55s; }
     deal();
   }
 
-  /* ==========================================================
-     OTHER APPS (recycle, calc, cmd, clock, media)
-  ========================================================== */
-  const recycleBin = []; // QoL: actual recycle bin storage
+  /* RECYCLE, CALC, CMD, CLOCK, MEDIA */
+  const recycleBin = [];
 
   function appRecycle(body, api) {
     body.classList.add("app-recycle");
@@ -4517,7 +4436,6 @@ body.shaking { animation: screenShake .55s; }
       clippy: function () { print("> summoning paperclip...", "sys"); setTimeout(showClippy, 300); },
       dialup: function () { print("> dialing up...", "sys"); setTimeout(startDialup, 300); },
 
-      // ============ EASTER EGGS ============
       oobe: function () {
         unlockAchievement("oobe");
         const crawl = [
@@ -4548,10 +4466,7 @@ body.shaking { animation: screenShake .55s; }
       },
       bob: function () {
         unlockAchievement("bob");
-        const bobCrawl = [
-          "> decrypting microsoft bob data...", "sys"
-        ];
-        print(bobCrawl[0], "sys");
+        print("> decrypting microsoft bob data...", "sys");
         setTimeout(function () {
           const lines = [
             "Bob was Microsoft's attempt at a friendly home UI in 1995.",
@@ -4639,10 +4554,7 @@ body.shaking { animation: screenShake .55s; }
           print("(Log in as the dev account to unlock.)", "warn");
         }
       },
-      bonzi: function () {
-        print("> summoning bonzi buddy...", "sys");
-        setTimeout(showBonzi, 400);
-      },
+      bonzi: function () { print("> summoning bonzi buddy...", "sys"); setTimeout(showBonzi, 400); },
       toolbar: function () {
         print("> launching FunBar 2003 installer...", "sys");
         setTimeout(function () {
@@ -4846,9 +4758,7 @@ body.shaking { animation: screenShake .55s; }
     renderList(); setPlaying(true);
   }
 
-  /* ==========================================================
-     APP REGISTRY
-  ========================================================== */
+  /* APP REGISTRY */
   const APPS = {
     notepad:     { id: "notepad",     title: "Untitled - Notepad", icon: "ico-notepad", w: 500, h: 400, build: appNotepad },
     minesweeper: { id: "minesweeper", title: "Minesweeper", icon: "ico-mine", w: 302, h: 386, build: appMinesweeper },
@@ -4876,9 +4786,7 @@ body.shaking { animation: screenShake .55s; }
     openWindow(Object.assign({}, app, { appId: id }));
   }
 
-  /* ==========================================================
-     DESKTOP ICONS
-  ========================================================== */
+  /* DESKTOP ICONS */
   const DEFAULT_ICONS = [
     { app: "explorer",    icon: "ico-computer",  label: "My Computer" },
     { app: "docs",        icon: "ico-docs",      label: "My Documents" },
@@ -4939,7 +4847,6 @@ body.shaking { animation: screenShake .55s; }
                 text: 'Send "' + ic.querySelector(".label").textContent + '" to the Recycle Bin?',
                 buttons: [
                   { label: "Yes", action: function () {
-                      // Store in recycle bin so it can be restored
                       recycleBin.push({ name: ic.querySelector(".label").textContent, icon: def.icon, size: (Math.floor(Math.random() * 500) + 10) + " KB" });
                       ic.style.transition = "opacity .3s, transform .3s";
                       ic.style.opacity = "0";
@@ -4980,9 +4887,7 @@ body.shaking { animation: screenShake .55s; }
     closeStartMenu();
   });
 
-  /* ==========================================================
-     WALLPAPER
-  ========================================================== */
+  /* WALLPAPER */
   const desktopEl = document.getElementById("desktop");
   const WALLPAPERS = [
     { id: "bliss", name: "Bliss (Default)" },
@@ -5001,9 +4906,7 @@ body.shaking { animation: screenShake .55s; }
   const savedWall = (function () { try { return localStorage.getItem("xp-wall"); } catch (e) { return null; } })();
   if (savedWall) setWallpaper(savedWall, true);
 
-  /* ==========================================================
-     MATRIX RAIN
-  ========================================================== */
+  /* MATRIX RAIN */
   let matrixRAF = null;
   const matrixCanvas = document.getElementById("matrix-canvas");
   function startMatrix() {
@@ -5031,9 +4934,7 @@ body.shaking { animation: screenShake .55s; }
   }
   function stopMatrix() { if (matrixRAF) { cancelAnimationFrame(matrixRAF); matrixRAF = null; } }
 
-  /* ==========================================================
-     THEME
-  ========================================================== */
+  /* THEME */
   const THEMES = [
     { id: "luna", name: "Luna Blue" },
     { id: "olive", name: "Luna Olive Green" },
@@ -5049,9 +4950,7 @@ body.shaking { animation: screenShake .55s; }
   const savedTheme = (function () { try { return localStorage.getItem("xp-theme"); } catch (e) { return null; } })();
   if (savedTheme) setTheme(savedTheme);
 
-  /* ==========================================================
-     DESKTOP CONTEXT MENU
-  ========================================================== */
+  /* DESKTOP CONTEXT MENU */
   desktopEl.addEventListener("contextmenu", function (e) {
     if (e.target.closest(".icon")) return;
     e.preventDefault();
@@ -5103,9 +5002,7 @@ body.shaking { animation: screenShake .55s; }
         "  Product ID: FUN-2003-XP-" + currentUser.id.toUpperCase().slice(0, 8) });
   }
 
-  /* ==========================================================
-     START MENU
-  ========================================================== */
+  /* START MENU */
   const startBtn = document.getElementById("start-btn");
   const startMenu = document.getElementById("start-menu");
   const smLeft = document.getElementById("sm-left");
@@ -5153,7 +5050,6 @@ body.shaking { animation: screenShake .55s; }
     smLeft.innerHTML = ""; smRight.innerHTML = "";
     let anyLeft = false;
 
-    // QoL: Recent programs section
     if (recentApps.length && !filter) {
       const lbl = document.createElement("div");
       lbl.className = "sm-section-label";
@@ -5262,9 +5158,7 @@ body.shaking { animation: screenShake .55s; }
     });
   });
 
-  /* ==========================================================
-     QUICK LAUNCH
-  ========================================================== */
+  /* QUICK LAUNCH */
   document.querySelectorAll("#quick-launch .ql-btn").forEach(function (b) {
     b.addEventListener("click", function () {
       if (b.dataset.app === "sticky") createStickyNote();
@@ -5276,9 +5170,7 @@ body.shaking { animation: screenShake .55s; }
     });
   });
 
-  /* ==========================================================
-     VOLUME
-  ========================================================== */
+  /* VOLUME */
   const volPopup = document.getElementById("vol-popup");
   const volTrack = document.getElementById("vol-track");
   const volFill = document.getElementById("vol-fill");
@@ -5317,9 +5209,7 @@ body.shaking { animation: screenShake .55s; }
     showBalloon("WeatherBug", "Current: 72°F and sunny.\nForecast: 72°F and sunny.\nTomorrow: 72°F and sunny.\n\nIt is always 72°F and sunny here.", "ico-warn");
   });
 
-  /* ==========================================================
-     DIAL-UP
-  ========================================================== */
+  /* DIAL-UP */
   const dialupModal = document.getElementById("dialup-modal");
   const dialupStatus = document.getElementById("dialup-status");
   const dialupFill = document.getElementById("dialup-fill");
@@ -5361,9 +5251,7 @@ body.shaking { animation: screenShake .55s; }
     };
   }
 
-  /* ==========================================================
-     ALT+TAB
-  ========================================================== */
+  /* ALT+TAB */
   const alttabEl = document.getElementById("alttab");
   const alttabGrid = document.getElementById("alttab-grid");
   let alttabIndex = 0, alttabVisible = false;
@@ -5402,9 +5290,7 @@ body.shaking { animation: screenShake .55s; }
     }
   });
 
-  /* ==========================================================
-     SCREENSAVER
-  ========================================================== */
+  /* SCREENSAVER */
   const ssEl = document.getElementById("screensaver");
   const ssCanvas = document.getElementById("ss-canvas");
   let ssRAF = null;
@@ -5441,9 +5327,7 @@ body.shaking { animation: screenShake .55s; }
     setTimeout(function () { document.addEventListener("pointerdown", stop); document.addEventListener("keydown", stop); }, 400);
   }
 
-  /* ==========================================================
-     BOOT → LOGIN
-  ========================================================== */
+  /* BOOT → LOGIN — FASTER TIMING */
   const bootEl = document.getElementById("boot");
   const loginEl = document.getElementById("login");
   const loginUsersEl = document.getElementById("login-users");
@@ -5506,18 +5390,17 @@ body.shaking { animation: screenShake .55s; }
       buttons: [{ label: "Restart", action: function () { location.reload(); } }, { label: "Cancel" }] });
   });
 
+  // FASTER BOOT: 800ms total, 200ms fade-out
   setTimeout(function () {
     bootEl.classList.add("done");
     setTimeout(function () {
       bootEl.style.display = "none";
       loginEl.classList.add("open");
       loginHint.textContent = "After you log on, you can add or change accounts.";
-    }, 500);
-  }, 2600);
+    }, 200);
+  }, 800);
 
-  /* ==========================================================
-     KONAMI CODES (both directions)
-  ========================================================== */
+  /* KONAMI CODES */
   const KONAMI = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
   const KONAMI_REV = ["ArrowDown","ArrowDown","ArrowUp","ArrowUp","ArrowRight","ArrowLeft","ArrowRight","ArrowLeft","a","b"];
   let konamiProgress = 0;
@@ -5525,7 +5408,6 @@ body.shaking { animation: screenShake .55s; }
 
   document.addEventListener("keydown", function (e) {
     const k = e.key;
-    // Forward
     if (k === KONAMI[konamiProgress] || k.toLowerCase() === KONAMI[konamiProgress].toLowerCase()) {
       konamiProgress++;
       if (konamiProgress === KONAMI.length) { konamiProgress = 0; triggerKonami(); }
@@ -5533,7 +5415,6 @@ body.shaking { animation: screenShake .55s; }
       konamiProgress = 0;
       if (k === KONAMI[0] || k.toLowerCase() === KONAMI[0].toLowerCase()) konamiProgress = 1;
     }
-    // Reverse
     if (k === KONAMI_REV[konamiRevProgress] || k.toLowerCase() === KONAMI_REV[konamiRevProgress].toLowerCase()) {
       konamiRevProgress++;
       if (konamiRevProgress === KONAMI_REV.length) { konamiRevProgress = 0; triggerKonamiReverse(); }
@@ -5565,9 +5446,7 @@ body.shaking { animation: screenShake .55s; }
       buttons: [{ label: "Start Me Up", noSpawn: true }] });
   }
 
-  /* ==========================================================
-     RANDOM GAGS
-  ========================================================== */
+  /* RANDOM GAGS */
   setInterval(function () {
     if (Math.random() < 0.15 && !clippyEl.classList.contains("show") && !loginEl.classList.contains("open")) showClippy();
   }, 55000);
@@ -5591,9 +5470,7 @@ body.shaking { animation: screenShake .55s; }
     }
   }, 45000);
 
-  /* ==========================================================
-     KEYBOARD SHORTCUTS
-  ========================================================== */
+  /* KEYBOARD SHORTCUTS */
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") {
       closeStartMenu(); hideContextMenu();
@@ -5620,9 +5497,7 @@ body.shaking { animation: screenShake .55s; }
     }
   });
 
-  /* ==========================================================
-     QoL: Ctrl+Wheel zoom desktop
-  ========================================================== */
+  /* Ctrl+Wheel zoom */
   let uiZoom = 1;
   document.addEventListener("wheel", function (e) {
     if (!e.ctrlKey) return;
